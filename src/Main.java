@@ -436,6 +436,11 @@ public class Main {
 			String[] bs = arg.split(";");
 			for(String b : bs)
 			{
+				if(!data.containsKey(b))
+				{
+					System.err.println(b + " is not a building.");
+					continue;
+				}
 				for(String r : data.get(b).keySet())
 					list.add(b + " " + r);
 			}
@@ -479,11 +484,18 @@ public class Main {
 				break;
 			String dept = line.substring(15,20);
 			dept = dept.replace(" ", "+");
-			String address = "http://classes.iastate.edu/soc.jsp?term=F2012&dept="
-							+ dept + "&term2=F2012&dept2="
-							+ "&course=&shour=06&sminute=00&sampm=am&ehour=11&eminute=55"
-							+ "&eampm=pm&credit=+&instructor=&title=&edreq=&spclcourse="
-							+ "&partterm=2006-01-012006-12-31&smonth=01&sday=01&emonth=12&eday=31";
+			String address = "http://classes.iastate.edu/soc.jsp?term=S2013&dept="
+								+ dept + "+&term2=S2013&dept2=" + dept 
+								+ "+&course=&shour=06&sminute=00&sampm=am&ehour=11"
+								+ "&eminute=55&eampm=pm&credit=+&instructor=&title="
+								+ "&edreq=&spclcourse=&partterm=2006-01-012006-12-31"
+								+ "&smonth=01&sday=01&emonth=12&eday=31"; 
+					
+//					"http://classes.iastate.edu/soc.jsp?term=F2012&dept="
+//							+ dept + "&term2=S2013&dept2="
+//							+ "&course=&shour=06&sminute=00&sampm=am&ehour=11&eminute=55"
+//							+ "&eampm=pm&credit=+&instructor=&title=&edreq=&spclcourse="
+//							+ "&partterm=2006-01-012006-12-31&smonth=01&sday=01&emonth=12&eday=31";
 			parsePage(address, data);
 		}
 		
